@@ -1,4 +1,4 @@
-package com.unthinkable.department;
+package com.unthinkable.entity;
 
 import javax.persistence.*;
 

@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.unthinkable.entity.Employee;
+import com.unthinkable.repository.EmployeeRepository;
+import com.unthinkable.service.EmployeeService;
+
 @SpringBootTest
 class EmployeeApiDataApplicationTests {
 

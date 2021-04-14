@@ -1,4 +1,4 @@
-package com.unthinkable.employee;
+package com.unthinkable.controller;
 
 import java.util.List;
 
@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unthinkable.department.Department;
+import com.unthinkable.entity.Department;
+import com.unthinkable.entity.Employee;
+import com.unthinkable.service.EmployeeService;
 
 @RestController
 //@RequestMapping("/get")

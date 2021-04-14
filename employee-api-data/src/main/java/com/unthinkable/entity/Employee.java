@@ -1,7 +1,7 @@
-package com.unthinkable.employee;
+package com.unthinkable.entity;
 
 import javax.persistence.*;
-import com.unthinkable.department.Department;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,10 +1,13 @@
-package com.unthinkable.employee;
+package com.unthinkable.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.unthinkable.entity.Employee;
+import com.unthinkable.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {

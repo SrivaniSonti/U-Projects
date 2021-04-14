@@ -1,4 +1,4 @@
-package com.unthinkable.department;
+package com.unthinkable.controller;
 
 import java.util.List;
 
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.unthinkable.entity.Department;
+import com.unthinkable.service.DepartmentService;
 
 @RestController
 //@RequestMapping("/get")

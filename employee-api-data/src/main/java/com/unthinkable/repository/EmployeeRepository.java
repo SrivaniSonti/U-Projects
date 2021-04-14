@@ -1,8 +1,10 @@
-package com.unthinkable.employee;
+package com.unthinkable.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+
+import com.unthinkable.entity.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee,String>{
 
