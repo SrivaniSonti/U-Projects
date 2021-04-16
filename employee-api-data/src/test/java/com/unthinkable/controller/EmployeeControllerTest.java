@@ -1,62 +1,57 @@
 package com.unthinkable.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unthinkable.EmployeeApiDataApplicationTests;
 import com.unthinkable.model.Department;
+import com.unthinkable.model.Employee;
 import com.unthinkable.service.EmployeeService;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(value = EmployeeController.class)
+@RunWith(MockitoJUnitRunner.class)
 public class EmployeeControllerTest {
 
-	@Autowired
 	private MockMvc mockMvc;
 
-	@MockBean
+	@Mock
 	private EmployeeService employeeService;
 
-	ObjectMapper objectMapper = new ObjectMapper();
+	@InjectMocks
+	private EmployeeController employeeController;
 
-	@Test
-	@DisplayName("Test to get all departments")
-	public void getAllDepartmentsTest() throws Exception {
-
-		/*Employee mockEmployee1 = new Employee();
-
-		Department mockDepartment2 = new Department();
-		mockDepartment2.setId("2");
-		mockDepartment2.setName("Testing");
-
-		List<Department> departmentList = new ArrayList<>();
-		departmentList.add(mockDepartment1);
-		departmentList.add(mockDepartment2);
-
-		Mockito.when(employeeService.getAllDepartments()).thenReturn(departmentList);
-		MvcResult result = mockMvc
-				.perform(MockMvcRequestBuilders.get("/employees").accept(MediaType.APPLICATION_JSON)).andReturn();
-		assertThat(result.getResponse().getContentAsString()).isEqualTo(this.mapToJson(departmentList));*/
+	@Before
+	public void setup() {
+		mockMvc = MockMvcBuilders.standaloneSetup(employeeController).build();
 	}
 
+	@Test
+	public void getAllEmployeesTest() throws Exception {
+		List<Employee> allEmployees = Arrays.asList(new Employee("1", "Srivani", "987757", new Department("1", "Dev")),
+													new Employee("2", "Shiva", "123456", new Department("2", "Testing")));
+		Mockito.when(employeeService.getAllEmployees()).thenReturn(allEmployees);
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/employees").accept(MediaType.APPLICATION_JSON))
+				.andReturn();
+		assertThat(result.getResponse().getContentAsString()).isEqualTo(this.mapToJson(allEmployees));
+	}
+
+	private String mapToJson(Object object) throws JsonProcessingException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.writeValueAsString(object);
+	}
 }

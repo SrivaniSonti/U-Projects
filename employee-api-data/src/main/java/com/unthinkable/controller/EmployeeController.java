@@ -15,7 +15,6 @@ import com.unthinkable.model.Employee;
 import com.unthinkable.service.EmployeeService;
 
 @RestController
-//@RequestMapping("/get")
 public class EmployeeController {
 
 	@Autowired
