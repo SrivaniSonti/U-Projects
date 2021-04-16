@@ -1,6 +1,4 @@
-package com.unthinkable.model;
-
-import static javax.persistence.TemporalType.TIMESTAMP;
+package com.ukable.model;
 
 import java.util.Date;
 
@@ -8,7 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,27 +17,40 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 @EntityListeners(AuditingEntityListener.class)
-public class Department {
-
-	public Department(String id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
+@AllArgsConstructor
+@NoArgsConstructor
+public class Employee {
 
 	@Id
-	@ApiModelProperty(notes = "ID of the Department", name = "id", required = true)
+	@ApiModelProperty(notes = "ID of the Employee", name = "id", required = true)
 	private String id;
 
-	@ApiModelProperty(notes = "Name of the Department", name = "name", required = true)
-	private String name;
+	@ApiModelProperty(notes = "Name of the Employee", name = "employeeName", required = true)
+	private String employeeName;
+
+	@ApiModelProperty(notes = "Employee Phone number", name = "employeePhoneNumber")
+	private String employeePhoneNumber;
+
+	@ManyToOne()
+	@ApiModelProperty(notes = "Department of the Employee", name = "department", hidden = true)
+	private Department department;
+	
+	public Employee(String id, String employeeName, String employeePhoneNumber, Department department) {
+		super();
+		this.id = id;
+		this.employeeName = employeeName;
+		this.employeePhoneNumber = employeePhoneNumber;
+		this.department = department;
+	}
 
 	@CreatedBy
 	@Column(name = "created_by", updatable = false)

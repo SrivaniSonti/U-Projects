@@ -1,4 +1,6 @@
-package com.unthinkable.model;
+package com.ukable.model;
+
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 import java.util.Date;
 
@@ -6,9 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
-import static javax.persistence.TemporalType.TIMESTAMP;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,40 +17,27 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
-@EntityListeners(AuditingEntityListener.class)
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-public class Employee {
+@EntityListeners(AuditingEntityListener.class)
+public class Department {
 
-	@Id
-	@ApiModelProperty(notes = "ID of the Employee", name = "id", required = true)
-	private String id;
-
-	@ApiModelProperty(notes = "Name of the Employee", name = "employeeName", required = true)
-	private String employeeName;
-
-	@ApiModelProperty(notes = "Employee Phone number", name = "employeePhoneNumber")
-	private String employeePhoneNumber;
-
-	@ManyToOne()
-	@ApiModelProperty(notes = "Department of the Employee", name = "department", hidden = true)
-	private Department department;
-	
-	public Employee(String id, String employeeName, String employeePhoneNumber, Department department) {
+	public Department(String id, String name) {
 		super();
 		this.id = id;
-		this.employeeName = employeeName;
-		this.employeePhoneNumber = employeePhoneNumber;
-		this.department = department;
+		this.name = name;
 	}
+
+	@Id
+	@ApiModelProperty(notes = "ID of the Department", name = "id", required = true)
+	private String id;
+
+	@ApiModelProperty(notes = "Name of the Department", name = "name", required = true)
+	private String name;
 
 	@CreatedBy
 	@Column(name = "created_by", updatable = false)

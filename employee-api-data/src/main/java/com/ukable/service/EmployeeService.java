@@ -1,4 +1,4 @@
-package com.unthinkable.service;
+package com.ukable.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unthinkable.model.Department;
-import com.unthinkable.model.Employee;
-import com.unthinkable.repository.DepartmentRepository;
-import com.unthinkable.repository.EmployeeRepository;
+import com.ukable.model.Department;
+import com.ukable.model.Employee;
+import com.ukable.repository.DepartmentRepository;
+import com.ukable.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {

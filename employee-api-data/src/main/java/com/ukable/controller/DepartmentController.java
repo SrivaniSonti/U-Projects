@@ -1,4 +1,4 @@
-package com.unthinkable.controller;
+package com.ukable.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unthinkable.model.Department;
-import com.unthinkable.service.DepartmentService;
+import com.ukable.model.Department;
+import com.ukable.service.DepartmentService;
 
 @RestController
 //@RequestMapping("/get")

@@ -1,4 +1,4 @@
-package com.unthinkable;
+package com.ukable;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

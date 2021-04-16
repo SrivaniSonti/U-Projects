@@ -1,4 +1,4 @@
-package com.unthinkable.util;
+package com.ukable.util;
 
 
 import org.springframework.context.annotation.Bean;

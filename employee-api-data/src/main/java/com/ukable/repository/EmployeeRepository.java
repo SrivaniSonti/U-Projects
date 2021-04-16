@@ -1,10 +1,10 @@
-package com.unthinkable.repository;
+package com.ukable.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.unthinkable.model.Employee;
+import com.ukable.model.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee,String>{
 

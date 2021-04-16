@@ -20,9 +20,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unthinkable.model.Department;
-import com.unthinkable.model.Employee;
-import com.unthinkable.service.EmployeeService;
+import com.ukable.controller.EmployeeController;
+import com.ukable.model.Department;
+import com.ukable.model.Employee;
+import com.ukable.service.EmployeeService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EmployeeControllerTest {
