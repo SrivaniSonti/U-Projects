@@ -49,7 +49,7 @@ public class EmployeeControllerTest {
 				.andReturn();
 		assertThat(result.getResponse().getContentAsString()).isEqualTo(this.mapToJson(allEmployees));
 	}
-
+	
 	private String mapToJson(Object object) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		return objectMapper.writeValueAsString(object);

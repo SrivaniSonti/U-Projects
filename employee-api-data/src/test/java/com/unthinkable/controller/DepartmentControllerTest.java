@@ -40,7 +40,7 @@ public class DepartmentControllerTest {
 	}
 
 	@Test
-	public void getAllEmployeesTest() throws Exception {
+	public void getAllDepartmentsTest() throws Exception {
 
 		List<Department> allDepartments = Arrays.asList(new Department("1", "Srivani"), new Department("2", "Shiva"));
 
