@@ -1,4 +1,4 @@
-package com.unthinkable.controller;
+package com.ukable.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
