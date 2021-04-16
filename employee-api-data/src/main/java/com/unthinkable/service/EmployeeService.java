@@ -6,51 +6,72 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unthinkable.entity.Employee;
+import com.unthinkable.model.Department;
+import com.unthinkable.model.Employee;
+import com.unthinkable.repository.DepartmentRepository;
 import com.unthinkable.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
+	@Autowired
+	private DepartmentRepository departmentRepository;
+
 	public List<Employee> getAllEmployees() {
-		List<Employee> employees= new ArrayList<>();
-		employeeRepository.findAll()
-		.forEach(employees::add);
+		List<Employee> employees = new ArrayList<>();
+		employeeRepository.findAll().forEach(employees::add);
 		return employees;
 	}
-	
+
 	public List<Employee> getAllEmployeesByDepartmentId(String id) {
-		List<Employee> employees= new ArrayList<>();
-		employeeRepository.findByDepartmentId(id)
-		.forEach(employees::add);
+		List<Employee> employees = new ArrayList<>();
+		employeeRepository.findByDepartmentId(id).forEach(employees::add);
 		return employees;
 	}
-	
+
 	public Employee getEmployeeById(String id) {
-		return employeeRepository.findById(id).get();
-	}
-	
-	
-	public List<Employee> getEmployeeByName(String name) {
-		return employeeRepository.findByEmployeeName(name);
+		Employee employee = new Employee();
+		employee =  employeeRepository.findById(id).get();
+		return employee;
 	}
 
-	public void addEmployee(Employee employee) {
-		employeeRepository.save(employee);
-	}
-	
-	public void updateEmployee(String id, Employee employee) {
-		employeeRepository.save(employee);
+	public List<Employee> getEmployeesByName(String name) {
+		List<Employee> employees = new ArrayList<>();
+		employees = employeeRepository.findByEmployeeName(name);
+		return employees;
 	}
 
-	public String deleteEmployee(String id) {
-		employeeRepository.deleteById(id);
-		return "deleted";
-		
+	public String addEmployee(String deptId , Employee employee) {
+		Boolean departmentFound = departmentRepository.findById(deptId).isPresent();
+		if(departmentFound) {
+			employee.setDepartment(new Department(deptId,""));
+			employeeRepository.save(employee);
+			return "Employee Created";
+		}else {
+			return "Unable to Create Employee, Department ID not found";
+		}
 	}
 
+	public String updateEmployee(String empId, Employee employee) {
+		Boolean employeeFound = employeeRepository.findById(empId).isPresent();
+		if(employeeFound) {
+			employeeRepository.save(employee);
+			return "Employee Updated";
+		}else
+			return "Employee not found";
+	}
+
+	public String deleteEmployee(String empId) {
+		Boolean employeeFound = employeeRepository.findById(empId).isPresent();
+		if(employeeFound) {
+		employeeRepository.deleteById(empId);
+		return "Employee Deleted";
+		}else
+		return "Employee not found";
+
+	}
 
 }

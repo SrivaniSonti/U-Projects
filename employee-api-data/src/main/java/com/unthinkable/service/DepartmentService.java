@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unthinkable.entity.Department;
+import com.unthinkable.model.Department;
 import com.unthinkable.repository.DepartmentRepository;
 
 @Service
@@ -25,16 +25,21 @@ public class DepartmentService {
 		return departmentRepository.findById(id).get();
 	}
 
-	public void addDepartment(Department department) {
-		departmentRepository.save(department);
+	public Department addDepartment(Department department) {
+		return departmentRepository.save(department);
 	}
 	
-	public void updateDepartment(String id, Department department) {
-		departmentRepository.save(department);
+	public Department updateDepartment(String id, Department department) {
+		return departmentRepository.save(department);
 	}
 
-	public void deleteDepartment(String id) {
-		departmentRepository.deleteById(id);
+	public String deleteDepartment(String id) {
+		if(departmentRepository.findById(id).isPresent()) {
+			departmentRepository.deleteById(id);
+			return "Department deleted";
+		}
+		else
+			return "Department not found.....";
 	}
 	
 	

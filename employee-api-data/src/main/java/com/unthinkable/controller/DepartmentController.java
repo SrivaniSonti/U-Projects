@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unthinkable.entity.Department;
+import com.unthinkable.model.Department;
 import com.unthinkable.service.DepartmentService;
 
 @RestController
@@ -19,7 +19,7 @@ import com.unthinkable.service.DepartmentService;
 public class DepartmentController {
 	
 	@Autowired
-	private DepartmentService departmentService;
+	private DepartmentService departmentService; 
 	
 	@GetMapping(value ="/departments")
 	public List<Department> getAllDepartments() {
@@ -32,17 +32,17 @@ public class DepartmentController {
 	}
 	
 	@PostMapping(value = "/departments")
-	public void addDepartment(@RequestBody Department department) {
-		departmentService.addDepartment(department);
+	public Department addDepartment(@RequestBody Department department) {
+		return departmentService.addDepartment(department);
 	}
 	
 	@PutMapping( value = "/departments/{id}")
-	public void updateDepartment(@RequestBody Department department ,@PathVariable String id) {
-		departmentService.updateDepartment(id,department);
+	public Department updateDepartment(@RequestBody Department department ,@PathVariable String id) {
+		return departmentService.updateDepartment(id,department);
 	}
 
 	@DeleteMapping( value = "/departments/{id}")
-	public void deleteDepartment(@PathVariable String id) {
-		departmentService.deleteDepartment(id);
+	public String deleteDepartment(@PathVariable String id) {
+		return departmentService.deleteDepartment(id);
 	}
 }

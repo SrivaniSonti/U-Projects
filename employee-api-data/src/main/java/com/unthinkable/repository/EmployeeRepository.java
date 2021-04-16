@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.unthinkable.entity.Employee;
+import com.unthinkable.model.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee,String>{
 
