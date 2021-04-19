@@ -55,13 +55,23 @@ public class EmployeeService {
 		}
 	}
 
-	public String updateEmployee(String empId, Employee employee) {
+	public String updateEmployee(String deptId, String empId, Employee employee) {
 		Boolean employeeFound = employeeRepository.findById(empId).isPresent();
 		if(employeeFound) {
 			employeeRepository.save(employee);
 			return "Employee Updated";
 		}else
-			return "Employee not found";
+		{
+			Boolean departmentFound = departmentRepository.findById(deptId).isPresent();
+		
+			if(departmentFound) {
+				employee.setDepartment(new Department(deptId,""));
+				employeeRepository.save(employee);
+				return "New Employee Created";
+			}
+			return "Created new Employee";
+		}
+			
 	}
 
 	public String deleteEmployee(String empId) {

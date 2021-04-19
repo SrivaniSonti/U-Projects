@@ -17,10 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ukable.controller.EmployeeController;
 import com.ukable.model.Department;
 import com.ukable.model.Employee;
 import com.ukable.service.EmployeeService;
@@ -49,6 +49,22 @@ public class EmployeeControllerTest {
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/employees").accept(MediaType.APPLICATION_JSON))
 				.andReturn();
 		assertThat(result.getResponse().getContentAsString()).isEqualTo(this.mapToJson(allEmployees));
+	}
+	
+	@Test
+	public void getEmployeesByNameTest() throws Exception {
+		List<Employee> allEmployees = Arrays.asList(new Employee("1", "srivani", "987757", new Department("1", "Dev")),
+				new Employee("2", "Shiva", "123456", new Department("2", "Testing")));
+		Mockito.when(employeeService.getEmployeesByName("srivani")).thenReturn(allEmployees);
+		mockMvc.perform(MockMvcRequestBuilders.get("/employees/{name}","srivani").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void deleteEmployeeTest() throws Exception {
+		Mockito.when(employeeService.deleteEmployee("1")).thenReturn("Success");
+		mockMvc.perform(MockMvcRequestBuilders.delete("/departments/{department_Id}/employees/{employee_id}","1","1").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
 	}
 	
 	private String mapToJson(Object object) throws JsonProcessingException {

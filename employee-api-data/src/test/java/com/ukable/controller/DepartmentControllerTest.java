@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ukable.controller.DepartmentController;
 import com.ukable.model.Department;
 import com.ukable.service.DepartmentService;
 
