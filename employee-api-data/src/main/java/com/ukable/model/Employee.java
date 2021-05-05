@@ -2,12 +2,8 @@ package com.ukable.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
+import javax.persistence.*;
+
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -31,6 +27,7 @@ import lombok.Setter;
 public class Employee {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(notes = "ID of the Employee", name = "id", required = true)
 	private String id;
 

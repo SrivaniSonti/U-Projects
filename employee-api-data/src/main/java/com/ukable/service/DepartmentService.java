@@ -15,7 +15,7 @@ public class DepartmentService {
 	@Autowired
 	private DepartmentRepository departmentRepository;
 	
-	public List<Department> getAllDepartments() {
+	public  List<Department>  getAllDepartments() {
 		List<Department> departments= new ArrayList<>();
 		departmentRepository.findAll().forEach(departments::add);
 		return departments;
@@ -33,15 +33,8 @@ public class DepartmentService {
 		return departmentRepository.save(department);
 	}
 
-	public String deleteDepartment(String id) {
-		if(departmentRepository.findById(id).isPresent()) {
+	public void deleteDepartment(String id) {
 			departmentRepository.deleteById(id);
-			return "Department deleted";
-		}
-		else
-			return "Department not found.....";
 	}
-	
-	
 
 }

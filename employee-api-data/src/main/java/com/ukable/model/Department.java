@@ -4,11 +4,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -33,6 +29,7 @@ public class Department {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(notes = "ID of the Department", name = "id", required = true)
 	private String id;
 
