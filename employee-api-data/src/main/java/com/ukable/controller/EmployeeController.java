@@ -16,7 +16,7 @@ import com.ukable.model.Employee;
 import com.ukable.service.EmployeeService;
 
 @RestController
-@RequestMapping("/get")
+@RequestMapping("/api/v1")
 public class EmployeeController {
 
 	@Autowired
